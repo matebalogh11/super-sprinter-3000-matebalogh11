@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head id="myhead">
+
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style13.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <title>Super Sprinter 3000</title>
+
+        <body>
+            <h2 id="myh3">User Story Manager</h2>
+            <form action="{{ url_for('story_maker') }}" method="GET">
+                <button type="submit" id="mybutt">Add new User Story</button>
+            </form><br>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Story Title</th>
+                    <th>User Story</th>
+                    <th>Acceptance Criteria</th>
+                    <th>Business Value</th>
+                    <th>Estimation</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            {% for i, item in file %}
+                <tr>
+                    <td>{{ i+1 }}</td>
+                    <td>{{ item[0] }}</td>
+                    <td>{{ item[1] }}</td>
+                    <td>{{ item[2] }}</td>
+                    <td>{{ item[3] }}</td>
+                    <td>{{ item[4] }}</td>
+                    <td>{{ item[5] }}</td>
+                    <form action="{{ url_for('story_maker', story_ID=(i+1)) }}" method="GET">
+                        <td id="button_col"><button type="submit" class="fa fa-pencil" aria-hidden="true"></button></td>
+                    </form>
+                    <form action="{{ url_for('list_page', story_ID=i) }}" method="POST">
+                        <td id="button_col"><button type="submit" class="fa fa-trash" aria-hidden="true"></button></td>
+                    </form>
+                </tr>
+            {% endfor %}
+            </table>      
+        </body>
+    </head>
+</html>

@@ -1,0 +1,61 @@
+body {
+
+    width: auto;
+    height: auto;
+}
+
+h3, h2 {
+
+    text-decoration: underline;
+    font-weight: bold;
+    
+}
+
+
+fieldset {
+
+    display: inline-block;
+    background-color: #cefcff
+}
+
+label, option {
+
+    font-family: sans-serif, arial, helvetica;
+    font-size: 14px;
+    color: #4a5277
+}
+
+
+th {
+ 
+    font-style: italic;
+    font-size: 14px;
+    color: black;
+    border: 0;
+    background-color: white
+}
+
+
+table, tr, td{
+
+    border-collapse: collapse;
+    background-color: #cefcff;
+    border: 2px solid black;
+}
+
+tr:hover {
+
+    background-color: #6682ff;
+}
+
+#mybutt {
+
+    background-color: #cefcff;
+    font-weight: bold;
+
+}
+
+#button_col {
+
+    background-color: white;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style13.css')}}">
+
+        {% if result>2500 %}
+        <title>Super Sprinter 3000 - Add new Story</title>
+    </head>
+    <body>
+        <fieldset id="myfield">
+        <h3>User Story manager - Add new story</h3>
+        
+        <form action="{{ url_for('story_maker') }}" method="POST">
+            <label for="first">Story Title</label><br>
+            <input name="title" id="first" ><br><br>
+            <label for="second">User story</label><br>
+            <textarea rows="6" cols="40" name="story" id="second" wrap="hard"></textarea><br><br>
+            <label for="third">Acceptance criteria</label><br>
+            <textarea rows="6" cols="40" name="crit" id="third" wrap="hard"></textarea><br><br>
+            <label for="fourth">Business Value</label><br>
+            <input type="number" name="business" min="100" max="1500" step="100" value="1000" id="fourth"><br><br>
+            <label for="fifth">Estimation(h)</label><br>
+            <input type="number" name="estimation" min="0.5" max="40" step="0.5" value="20" id="fifth"><br><br>
+            <select name="stat">
+                <option value="Planning">Planning</option>
+                <option value="TODO">TODO</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Review">Review</option>
+                <option value="Done">Done</option>
+            </select><br><br>
+            <input type="submit" value="Create" id="mybutt">
+        </form>
+        </fieldset>
+    </body>
+
+        {% else %}
+        <title>Super Sprinter 3000 - Edit Story</title>
+
+    <body>
+        <fieldset id="myfield">
+        <h3>User Story manager - Edit Story</h3>
+            <form action="{{ url_for('story_maker', story_ID=story_ID) }}" method="POST">
+                <label for="first">Story Title</label><br>
+                <input name="title" value="{{ fill[result][0] }}" id="first"><br><br>
+                <label for="second">User story</label><br>
+                <textarea rows="6" cols="40" name="story" id="second" wrap="hard">{{ fill[result][1] }}</textarea><br><br>
+                <label for="third">Acceptance criteria</label><br>
+                <textarea rows="6" cols="40" name="crit" id="third" wrap="hard">{{ fill[result][2] }}</textarea><br><br>
+                <label for="fourth">Business Value</label><br>
+                <input type="number" name="business" min="100" max="1500" step="100" value="{{ fill[result][3] }}" id="fourth"><br><br>
+                <label for="fifth">Estimation(h)</label><br>
+                <input type="number" name="estimation" min="0.5" max="40" step="0.5" value="{{ fill[result][4] }}" id="fifth"><br><br>
+                <select name="stat">
+                    {% for item in select_options %}
+                    {% if item==fill[result][5] %}
+                        <option selected value="{{ item }}">{{ item }}</option>
+                    {% else %}
+                        <option value="{{ item }}">{{ item }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select><br><br>
+                <input type="submit" value="Update" id="mybutt">
+            </form>
+        </fieldset>
+        </body>
+        {% endif %}
+</html>
